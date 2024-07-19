@@ -58,7 +58,13 @@ You don't need to configure anything to be able to use the commands of this exte
 ## Limitations
 
 * There are some situation where the automatic detection mechanism of Qt is not working. If that is the case you can always trigger the `Scan for Qt kits` command in the command palette.
-* The debugger extension use normal natvis xml files (used via the `launch.json` setting `visualizerFile` from the [C/C++ extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) ). They work really well on windows, but on mac and linux there are some problems, because it is not based on the same implementation. If you have any problems with them create an issue on their issue tracker.
+* The debugger extension use normal natvis xml files (used via the `launch.json` setting `visualizerFile` from the [C/C++ extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) ).
+vscode-qt-tools extension just injects the natvis files to launch.json file (replacing the namespace macro correctly), and does not do any special handling of them inside it.
+The handling of natvis files is made by the ms-vscode.cpptools extension itself. 
+From the [documentation page](https://code.visualstudio.com/docs/cpp/natvis):
+> For Microsoft C++ debugging ("type": "cppvsdbg"), the debugger contains the full implementation of the Natvis framework in Visual Studio.
+> For gdb/lldb debugging ("type": "cppdbg"), a subset of the Natvis framework has been ported to the Visual Studio Code C/C++ extension.
+> If additional features that are not implemented are requested, please file an issue on the MIEngine GitHub page with details of what is missing.
 
 ## Variable substitution
 
